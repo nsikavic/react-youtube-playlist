@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import Avatar from '@material-ui/core/Avatar';
 import _ from 'lodash';
 import { youtubeSearch, userLogin } from '../actions/index'
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -36,6 +37,9 @@ const styles = {
   },
   accountCircle: {
     marginLeft: 10
+  },
+  avatar: {
+    marginLeft: 10
   }
 
 };
@@ -44,7 +48,7 @@ class AppHeader extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {      
+    this.state = {
       anchorEl: null
     }
 
@@ -59,22 +63,21 @@ class AppHeader extends Component {
   }
 
   handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });    
+    this.setState({ anchorEl: event.currentTarget });
   };
 
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
 
-  handleSignOut = () => {    
-    this.setState({ anchorEl: null }); 
+  handleSignOut = () => {
+    this.setState({ anchorEl: null });
     firebase.auth().signOut();
     this.props.userLogin(null);
-
   }
 
   render() {
-    const { classes } = this.props;    
+    const { classes } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
@@ -102,21 +105,26 @@ class AppHeader extends Component {
               </Grid>
 
               <Grid item xs={3} sm={3} className={classes.userHeader}>
-              { this.props.user === null &&
-                <LoginDialog open={true} />
-              }
-              { this.props.user !== null &&
-                <Button className={classes.headerButton}
-                  aria-owns={open ? 'menu-appbar' : null}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
-                  color="inherit">
-                  {this.props.user}
-                  <AccountCircle className={classes.accountCircle} />
-                </Button>
+                {this.props.user === null &&
+                  <LoginDialog open={true} />
+                }
+                {this.props.user !== null &&
+                  <Button className={classes.headerButton}
+                    aria-owns={open ? 'menu-appbar' : null}
+                    aria-haspopup="true"
+                    onClick={this.handleMenu}
+                    color="inherit">
+                    {this.props.user}
+                    {/* <AccountCircle className={classes.accountCircle} /> */}
+                    <Avatar
+                      alt="avatar"
+                      src={firebase.auth().currentUser.photoURL} 
+                      className={classes.avatar}                     
+                    />
+                  </Button>
 
-              }
-                
+                }
+
                 <div>
                   <Menu className={classes.headerMenu}
                     id="menu-appbar"
@@ -145,7 +153,7 @@ class AppHeader extends Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     user: state.youtubeUser
   }
