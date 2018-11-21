@@ -1,0 +1,32 @@
+{
+  "name": "youtube-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^1.2.1",
+    "@material-ui/icons": "^1.1.0",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.1",
+    "firebase": "^5.0.4",
+    "lodash": "^4.17.10",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "react-youtube": "^7.6.0",
+    "reactstrap": "^6.3.0",
+    "redux": "^4.0.0",
+    "redux-form": "^7.3.0",
+    "redux-promise": "^0.6.0",
+    "redux-thunk": "^2.3.0",
+    "request-ip": "^2.0.2",
+    "youtube-api-search": "0.0.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

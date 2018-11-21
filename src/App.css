@@ -1,0 +1,115 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.youtubePlayer{
+  margin: 10px;
+}
+
+.searchTerm{
+  width: 100%;
+}
+
+.videoListItemHeading{
+  text-align: left;
+  margin-left: 3px;
+}
+
+.videoListItemBody{
+  text-align: left;
+  margin-left: 3px;  
+}
+
+.videoListItem {
+  cursor: pointer;
+  margin-bottom: 15px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.videoListMedia:active {
+  background-color: #eaeaea;
+}
+
+.likeCounter {
+  color: #53b54a; 
+}
+
+.dislikeCounter {
+  color: #d64444;
+}
+
+.thumbIcon{
+  cursor: pointer;
+}
+
+.thumbIcon:active{
+  color: black
+  
+}
+
+.listBox{
+  overflow-y: auto;
+  height: calc(90vh - 110px);  
+}
+
+.mediaDiv{
+  margin-right: 15px;
+}
+
+.playlist-header {
+  display: flex;
+  justify-content: space-between;
+  height: 41px;  
+}
+
+.playlist-header-text {
+  width: 100%;  
+}
+
+.autoplay-checkbox{
+  position: absolute;
+  right: 0;
+}
