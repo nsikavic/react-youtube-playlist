@@ -1,32 +1,44 @@
 import React, { Component } from 'react';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import {connect} from 'react-redux';
-import {userLogin} from '../actions/index';
+import { connect } from 'react-redux';
+import { userLogin } from '../actions/index';
+import * as firebase from 'firebase';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 class LoginDialog extends Component {
-   
 
     constructor(props) {
         super(props);
         this.state = {
             open: this.props.open,
-            username: ""
+            username: ''
         }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.uiConfig = {
+            signInFlow: 'popup',
+            signInOptions: [
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID
+            ],
+            callbacks: {
+                signInSuccess: () => false
+            }
+        }
     }
 
-    handleChange(event){
-        this.setState({username: event.target.value})
+    componentDidMount = () => {
+        firebase.auth().onAuthStateChanged(user => {
+            if(!!user && user.email){
+                this.setState({open: false});
+                this.props.userLogin(user.email)
+            }            
+        })
+    }
+
+    handleChange = (event) => {
+        this.setState({ username: event.target.value })
     }
 
     handleSubmit = () => {
@@ -37,7 +49,7 @@ class LoginDialog extends Component {
 
     render() {
         return (
-            <div>                
+            <div>
                 <Dialog
                     disableBackdropClick
                     disableEscapeKeyDown
@@ -45,36 +57,25 @@ class LoginDialog extends Component {
                     onClose={this.handleClose}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description">
-                    <DialogTitle id="alert-dialog-title">{"Enter your username:"}</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">{"You are not signed in"}</DialogTitle>
                     <DialogContent>
-                        <TextField
-                            id="username"
-                            label="Username"
-                            InputProps={{
-                                // shrink: true,
-                                startAdornment: (
-                                  <InputAdornment position="start">
-                                    <AccountCircle />
-                                  </InputAdornment>
-                                )
-                            }}                                                
-                            fullWidth
-                            margin="normal"   
-                            onChange={this.handleChange}                             
-                        />
+
+                        <div className="login-container">
+                            <StyledFirebaseAuth
+                                uiConfig={this.uiConfig}
+                                firebaseAuth={firebase.auth()}
+                            />
+
+                        </div>
+
                         <DialogContentText id="alert-dialog-description">
                             You can vote only once per video in playlist!
                         </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={this.handleSubmit} color="primary" autoFocus>
-                            Submit
-                        </Button>
-                    </DialogActions>
+                    </DialogContent>          
                 </Dialog>
             </div>
         );
     }
 }
 
-export default connect(null, {userLogin})(LoginDialog);
+export default connect(null, { userLogin })(LoginDialog);

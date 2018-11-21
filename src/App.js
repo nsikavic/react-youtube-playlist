@@ -10,7 +10,6 @@ import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import VideoList from './components/VideoList';
 import Typography from '@material-ui/core/Typography';
-import LoginDialog from './components/LoginDialog';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
@@ -46,7 +45,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.getUser();
+    //this.props.getUser();
   }
 
   render() {

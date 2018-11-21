@@ -7,12 +7,13 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import _ from 'lodash';
-import { youtubeSearch } from '../actions/index'
+import { youtubeSearch, userLogin } from '../actions/index'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import LoginDialog from '../components/LoginDialog';
+import * as firebase from 'firebase';
 
 const styles = {
   root: {
@@ -47,9 +48,6 @@ class AppHeader extends Component {
       anchorEl: null
     }
 
-    this.handleClose = this.handleClose.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
-    this.handleMenu = this.handleMenu.bind(this);
   }
 
   videoSearch = _.debounce((term) => {
@@ -61,17 +59,18 @@ class AppHeader extends Component {
   }
 
   handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
-    var a = this.state.anchorEl;
+    this.setState({ anchorEl: event.currentTarget });    
   };
 
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
 
-  handleLogout = () => {    
-    this.setState({ anchorEl: null });
-    localStorage.removeItem("youtubeUser");
+  handleSignOut = () => {    
+    this.setState({ anchorEl: null }); 
+    firebase.auth().signOut();
+    this.props.userLogin(null);
+
   }
 
   render() {
@@ -110,7 +109,7 @@ class AppHeader extends Component {
                 <Button className={classes.headerButton}
                   aria-owns={open ? 'menu-appbar' : null}
                   aria-haspopup="true"
-                  // onClick={this.handleMenu}
+                  onClick={this.handleMenu}
                   color="inherit">
                   {this.props.user}
                   <AccountCircle className={classes.accountCircle} />
@@ -133,7 +132,7 @@ class AppHeader extends Component {
                     open={open}
                     onClose={this.handleClose}
                   >
-                    <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+                    <MenuItem onClick={this.handleSignOut}>Sign out</MenuItem>
                   </Menu>
                 </div>
               </Grid>
@@ -153,4 +152,4 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps, { youtubeSearch })(withStyles(styles)(AppHeader));
+export default connect(mapStateToProps, { youtubeSearch, userLogin })(withStyles(styles)(AppHeader));

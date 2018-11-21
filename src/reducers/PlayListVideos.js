@@ -1,20 +1,7 @@
-import { ADD_VIDEO, REMOVE_VIDEO, FETCH_PLAYLIST } from '../actions/index'
+import { REMOVE_VIDEO, FETCH_PLAYLIST } from '../actions/index'
 
 export default function(state=[], action) {
-    switch (action.type){
-        // case ADD_VIDEO:
-        //     if(!state.playlist) state.playlist = [];
-            
-        //     var newVideoId = action.payload.id.videoId;
-        //     var contains = false;
-
-        //     for (var i=0; i < state.playlist.length; i++){
-        //         if(state.playlist[i].id.videoId === newVideoId) contains = true;
-        //     }
-            
-        //     if(!contains) return {...state, playlist: [...state.playlist, action.payload]};
-        //     else return {...state, playlist: [...state.playlist]};         
-    
+    switch (action.type){    
         case REMOVE_VIDEO:
             if(!state.playlist) state.playlist = [];
             var newPlayList = state.playlist.filter(video => video.id.videoId !== action.payload.video_id);
