@@ -23,6 +23,14 @@
   font-size: large;
 }
 
+@media only screen and (max-width: 775px) {
+  .header-title{
+    display: block !important;
+    float: left;
+  }
+  
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -116,4 +124,15 @@
 
 .login-container {
   height: 75px;
+}
+
+.header-title{
+  display: flex;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.logo-img{
+  width: 100px;
+  margin-right: 10px;
 }

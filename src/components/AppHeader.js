@@ -9,7 +9,6 @@ import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
 import _ from 'lodash';
 import { youtubeSearch, userLogin } from '../actions/index'
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -22,7 +21,7 @@ const styles = {
   },
   titleName: {
     textAlign: 'left',
-    paddingTop: '30px',
+    // paddingTop: '30px',
     cursor: 'default'
   },
   userHeader: {
@@ -40,8 +39,11 @@ const styles = {
   },
   avatar: {
     marginLeft: 10
+  },
+  logo: {
+    width: 100,
+    backgroundColor: 'transparent'
   }
-
 };
 
 class AppHeader extends Component {
@@ -88,9 +90,12 @@ class AppHeader extends Component {
             <Grid container spacing={0}>
 
               <Grid item xs={3} sm={3}>
-                <Typography variant="title" color="inherit" className={classes.titleName}>
-                  Upchain YouTube Player
+                <div className="header-title">
+                  <img className="logo-img" src='upchain_logo.jpg' alt='logo' />
+                  <Typography variant="title" color="inherit" className={classes.titleName}>
+                    Playlist
                 </Typography>
+                </div>
               </Grid>
 
               <Grid item xs={6} sm={6}>
@@ -115,11 +120,10 @@ class AppHeader extends Component {
                     onClick={this.handleMenu}
                     color="inherit">
                     {this.props.user}
-                    {/* <AccountCircle className={classes.accountCircle} /> */}
                     <Avatar
                       alt="avatar"
-                      src={firebase.auth().currentUser.photoURL} 
-                      className={classes.avatar}                     
+                      src={firebase.auth().currentUser.photoURL}
+                      className={classes.avatar}
                     />
                   </Button>
 

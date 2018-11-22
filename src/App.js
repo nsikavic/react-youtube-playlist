@@ -15,7 +15,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   paper: {
     padding: theme.spacing.unit,
@@ -98,19 +98,13 @@ class App extends Component {
                           checked={this.props.autoplay}
                           onChange={(event, checked) => this.handleChange(event, checked)}
                           value="autoplay"
+                          color="default"
                         />
                       }
                       label="Autoplay"
                     />
-
-
                   </div>
-
-
-
-
                 </div>
-
                 <hr />
                 <div className="listBox">
                   <VideoList videos={this.props.playlistVideos} type="playList" />
