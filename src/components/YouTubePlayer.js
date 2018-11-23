@@ -37,6 +37,10 @@ class YouTubePlayer extends Component {
     this.props.removeVideoFromPlaylist(this.props.playlistVideos[0], videoId);
   }
 
+  _onError(event, videoId) {
+    this.props.removeVideoFromPlaylist(this.props.playlistVideos[0], videoId);
+  }
+
   render() {
     const opts = {
       playerVars: { // https://developers.google.com/youtube/player_parameters
@@ -67,6 +71,7 @@ class YouTubePlayer extends Component {
             opts={opts}
             onReady={this._onReady}
             onEnd={(e) => this._onEnd(e, videoId)}
+            onError={(e) => this._onError(e, videoId)}
           />
         </div>
         <div>
