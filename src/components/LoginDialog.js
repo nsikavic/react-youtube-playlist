@@ -20,7 +20,12 @@ class LoginDialog extends Component {
         this.uiConfig = {
             signInFlow: 'popup',
             signInOptions: [
-                firebase.auth.GoogleAuthProvider.PROVIDER_ID
+                {
+                    provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                    customParameters: {
+                        hd: 'upchain.com'
+                    }
+                }
             ],
             callbacks: {
                 signInSuccess: () => false
@@ -30,10 +35,10 @@ class LoginDialog extends Component {
 
     componentDidMount = () => {
         firebase.auth().onAuthStateChanged(user => {
-            if(!!user && user.email){
-                this.setState({open: false});
+            if (!!user && user.email) {
+                this.setState({ open: false });
                 this.props.userLogin(user.email)
-            }            
+            }
         })
     }
 
@@ -71,7 +76,7 @@ class LoginDialog extends Component {
                         <DialogContentText id="alert-dialog-description">
                             You can vote only once per video in playlist!
                         </DialogContentText>
-                    </DialogContent>          
+                    </DialogContent>
                 </Dialog>
             </div>
         );
