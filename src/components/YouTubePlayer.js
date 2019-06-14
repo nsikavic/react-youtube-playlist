@@ -84,8 +84,10 @@ class YouTubePlayer extends Component {
             <Typography component="p">
               {description}
             </Typography>
-            <Typography>
-              {user}
+            <Typography component="p">
+              <span className="videoListItemText">
+                Requested by: {user}
+              </span>
             </Typography>
           </Paper>
         </div>

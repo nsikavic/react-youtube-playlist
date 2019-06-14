@@ -27,17 +27,24 @@ class VideoListItem extends Component {
     }
 
     addVideo(video) {
-        var contains = false;
-        if (this.props.playlist.length > 0) {
-            for (var i = 0; i < this.props.playlist.length; i++) {
-                if (this.props.playlist[i].id.videoId === video.id.videoId) contains = true;
-            }
-        }
 
-        if (!contains) {
-            this.props.addVideoToPlaylist(video, this.props.loggedUser)
+        console.log(this.props.loggedUser);
+        if (this.props.loggedUser && this.props.includes('upchain')) {
+            var contains = false;
+            if (this.props.playlist.length > 0) {
+                for (var i = 0; i < this.props.playlist.length; i++) {
+                    if (this.props.playlist[i].id.videoId === video.id.videoId) contains = true;
+                }
+            }
+
+            if (!contains) {
+                this.props.addVideoToPlaylist(video, this.props.loggedUser)
+            } else {
+                this.setState({ open: true, messageText: 'Video is already in the playlist!' });
+                setTimeout(() => { this.setState({ open: false }) }, 2000)
+            }
         } else {
-            this.setState({ open: true, messageText: 'Video is already in the playlist!' });
+            this.setState({ open: true, messageText: 'You must be logged with upchain domain!' });
             setTimeout(() => { this.setState({ open: false }) }, 2000)
         }
     }
