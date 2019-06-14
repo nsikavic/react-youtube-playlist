@@ -70,6 +70,7 @@ class VideoListItem extends Component {
         const likes = video.likes;
         const dislikes = video.dislikes;
         const dbKey = video.dbKey;
+        const user = this.props.user;
 
         return (
             <div className={this.props.type === "searchList" ? 'videoListItem' : ''}
@@ -79,7 +80,8 @@ class VideoListItem extends Component {
                         <Media object src={imageUrl} alt="Image" />
                     </Media>
                     <Media body className="videoListItemBody">
-                        {title}
+                        <p><span className="videoListItemText">Title:</span> {title}</p>
+                        <p><span className="videoListItemText">Requested by:</span> {user}</p>
                     </Media>
                     {this.props.type === "playList" &&
                         <div>

@@ -54,6 +54,7 @@ class YouTubePlayer extends Component {
     var videoId = ""
     var title = "";
     var description = "";
+    var user = "";
 
     var youtubeList = this.props.playlistVideos;
 
@@ -61,6 +62,7 @@ class YouTubePlayer extends Component {
       videoId = youtubeList[0].id.videoId;
       title = youtubeList[0].snippet.title;
       description = youtubeList[0].snippet.description;
+      user = youtubeList[0].user;
     }
 
     return (
@@ -81,6 +83,9 @@ class YouTubePlayer extends Component {
             </Typography>
             <Typography component="p">
               {description}
+            </Typography>
+            <Typography>
+              {user}
             </Typography>
           </Paper>
         </div>

@@ -68,6 +68,10 @@
   margin-left: 3px;  
 }
 
+.videoListItemText {
+  font-weight: bold;
+}
+
 .videoListItem {
   cursor: pointer;
   margin-bottom: 15px;

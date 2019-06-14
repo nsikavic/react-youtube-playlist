@@ -5,19 +5,19 @@ function VideoList(props) {
 
     const videoItems = props.videos.map((video) => {
         return (
-            <VideoListItem key={video.etag} video={video} type={props.type} />
+            <VideoListItem key={video.etag} video={video} type={props.type} user={video.user} />
         );
-        
+
     })
 
     return (
-            <div>
-                {videoItems}
-            </div>
+        <div>
+            {videoItems}
+        </div>
     );
 }
 
-export default(VideoList);
+export default (VideoList);
 
 
 
