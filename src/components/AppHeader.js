@@ -61,7 +61,7 @@ class AppHeader extends Component {
   }, 500);
 
   componentDidMount() {
-    this.videoSearch('kalkbrenner')
+    // this.videoSearch('kalkbrenner')
   }
 
   handleMenu = event => {
