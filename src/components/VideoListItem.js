@@ -29,7 +29,7 @@ class VideoListItem extends Component {
     addVideo(video) {
 
         console.log(this.props.loggedUser);
-        if (this.props.loggedUser && this.props.includes('upchain')) {
+        if (this.props.loggedUser && this.props.loggedUser.includes('upchain')) {
             var contains = false;
             if (this.props.playlist.length > 0) {
                 for (var i = 0; i < this.props.playlist.length; i++) {
@@ -88,7 +88,7 @@ class VideoListItem extends Component {
                     </Media>
                     <Media body className="videoListItemBody">
                         <p><span className="videoListItemText">Title:</span> {title}</p>
-                        <p><span className="videoListItemText">Requested by:</span> {user}</p>
+                        {this.props.type !== "searchList" && <p><span className="videoListItemText">Requested by:</span> {user}</p>}
                     </Media>
                     {this.props.type === "playList" &&
                         <div>
